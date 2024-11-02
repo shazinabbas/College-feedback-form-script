@@ -1,15 +1,16 @@
-var list = document.getElementsByClassName("validate[required]")
-for (let j = 0; j < list.length; j++) {
-    var options = list[j].options;
-    for (let i = 0; i < options.length; i++) {
-        if (options[i].textContent === "4") options[i].selected = true;
+const radioButtons = document.querySelectorAll('input[type="radio"].answers');
 
-        // Uncomment the following code to set custom values for specific teachers
-        // Set j % 8 == COLUMN_INDEX to set custom values for that specific teacher
-        // In the following code, it will set 0 for the Column 1 and 3
-        // PS: The column index starts from 0
-        // if(j % 8 == 1 || j % 8 == 3 ){ 
-        //     if(options[i].textContent==="0")options[i].selected=true;
-        // } 
+// Filter and click all "Strongly agree" options
+radioButtons.forEach(radio => {
+    // Check if the parent TD contains "Strongly agree" text
+    if (radio.parentElement.textContent.trim().toLowerCase() === 'strongly agree') {
+        radio.checked = true;
+        
+        // Trigger change event to ensure form validation works
+        const event = new Event('change', {
+            bubbles: true,
+            cancelable: true,
+        });
+        radio.dispatchEvent(event);
     }
-}
+});
