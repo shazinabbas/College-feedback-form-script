@@ -1,4 +1,5 @@
 const radioButtons = document.querySelectorAll('input[type="radio"].answers');
+const textareas = document.querySelectorAll('textarea.clsanswertextarea');
 
 // Filter and click all "Strongly agree" options
 radioButtons.forEach(radio => {
@@ -13,4 +14,9 @@ radioButtons.forEach(radio => {
         });
         radio.dispatchEvent(event);
     }
+});
+
+// Fill each textarea with ".........."
+textareas.forEach(textarea => {
+    textarea.value = '..........';
 });
